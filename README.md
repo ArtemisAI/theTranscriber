@@ -1,4 +1,42 @@
 YouTube Transcript Retrieval Service – Technical and Business Requirements
+
+---
+
+📁 **Directory overview**
+
+```
+theTranscriber/
+├── backend/          # FastAPI service (Python 3.11)
+│   └── app/ …        # application code
+├── frontend/         # React (Vite) UI for demo purposes
+├── docker-compose.yml
+├── .env.template     # environment variables (copy to `.env`)
+├── TODO.md           # master backlog (update each sprint)
+└── README.md         # ← you are here
+```
+
+Run the stack locally:
+
+```
+# 1. Provide environment variables
+cp .env.template .env
+
+# 2. Start backend + Redis (hot-reload enabled)
+docker compose up --build
+
+# 3. In a separate terminal – run the React dev server
+cd frontend
+npm install
+npm run dev
+```
+
+Access:
+
+- API docs at http://localhost:8000/docs
+- Frontend at http://localhost:5173
+
+> Implementation work is tracked in [`TODO.md`](./TODO.md).  Most endpoints are
+> still *501 Not Implemented* while the scaffolding is reviewed.
 Executive Summary
 As video content proliferates, internal teams increasingly need efficient access to YouTube video transcripts. This project will deliver an on-premise FastAPI-based service that searches YouTube and extracts transcripts using the open-source youtube-transcript-api library. By providing transcripts in text, JSON, or SRT format via REST endpoints, the service will streamline research, AI-driven analysis (e.g. summarization), and content workflows. It will support integration with internal agents (such as n8n workflows or an MCP server), and run securely on our infrastructure using Docker Compose. Authentication or monetization are deferred to later phases, but are noted for future extensibility.
 Business Justification

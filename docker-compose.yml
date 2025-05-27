@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    volumes:
+      - ./backend/app:/app/app  # hot-reload in dev
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  # Placeholder for a future React build container
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - "5173:80"
+
+networks:
+  default:
+    name: transcriber-net
