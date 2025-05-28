@@ -1,0 +1,145 @@
+/* General body/app styling */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f7f6;
+  color: #333;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* App component main container */
+.app-main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+/* VideoIdForm styles */
+.video-id-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center form elements */
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.video-id-form div {
+  display: flex;
+  align-items: center; /* Align label and input */
+  margin-bottom: 10px; /* Space between label/input and button */
+  width: 100%;
+  max-width: 500px; /* Max width for the input row */
+}
+
+.video-id-form label {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #34495e;
+  flex-shrink: 0; /* Prevent label from shrinking */
+}
+
+.video-id-form input[type="text"] {
+  flex-grow: 1; /* Allow input to take available space */
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-width: 200px; /* Minimum width for the input */
+}
+
+.video-id-form button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #3498db;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.video-id-form button:hover {
+  background-color: #2980b9;
+}
+
+.video-id-form button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* TranscriptDisplay styles */
+.transcript-display-container {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+}
+
+.transcript-display-container h3 {
+  margin-top: 0;
+  color: #34495e;
+}
+
+.transcript-display-container pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.transcript-display-container p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.transcript-display-container .error-message {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .video-id-form div {
+    flex-direction: column; /* Stack label and input on small screens */
+    align-items: flex-start;
+  }
+
+  .video-id-form label {
+    margin-bottom: 5px; /* Space when stacked */
+    margin-right: 0;
+  }
+
+  .video-id-form input[type="text"] {
+    width: 100%; /* Full width for stacked input */
+  }
+
+  .app-main {
+    margin: 10px;
+    padding: 15px;
+  }
+}
