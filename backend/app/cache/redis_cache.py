@@ -9,8 +9,8 @@ from __future__ import annotations
 
 from typing import Any, Optional
 
-# TODO: Uncomment once `redis` package is added to requirements
-# import redis.asyncio as redis_async
+import redis.asyncio as redis_async
+from app.core.config import settings
 
 
 class RedisCache:
@@ -23,17 +23,18 @@ class RedisCache:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def __init__(self, url: str):
-        # Placeholder: the actual connection would be initialised here
-        self.url = url
-        self.client = None  # type: ignore
+    def __init__(self):
+        self.redis_url = settings.redis_url
+        self.client = redis_async.from_url(
+            self.redis_url, encoding="utf-8", decode_responses=True
+        )
+        self.default_ttl_seconds = settings.cache_ttl_seconds
 
     async def get(self, key: str) -> Optional[str]:  # noqa: D401
         """Retrieve a value from cache or return ``None``."""
-        # Placeholder implementation
-        return None
+        return await self.client.get(key)
 
     async def set(self, key: str, value: str, ttl: int | None = None) -> None:  # noqa: D401
         """Store a value in cache with optional TTL."""
-        # Placeholder implementation
-        return None
+        effective_ttl = ttl if ttl is not None else self.default_ttl_seconds
+        await self.client.set(key, value, ex=effective_ttl)
