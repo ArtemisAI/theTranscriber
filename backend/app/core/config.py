@@ -14,29 +14,39 @@ print(settings.youtube_api_key)
 from functools import lru_cache
 from typing import List, Optional
 
+<<<<<<< HEAD
 from pydantic_settings import BaseSettings
+=======
+from pydantic_settings import BaseSettings, SettingsConfigDict # MODIFIED_LINE
+>>>>>>> 1c3e6eff7b580d19fab037a99cfdf7a9e7de9c95
 from pydantic import Field, AnyHttpUrl
 
 
 class Settings(BaseSettings):
     # --- General ---------------------------------------------------------
-    environment: str = Field("development", env="ENVIRONMENT")
-    debug: bool = Field(True, env="DEBUG")
+    environment: str = Field("development")
+    debug: bool = Field(True)
 
     # --- YouTube API ------------------------------------------------------
-    youtube_api_key: str = Field("", env="YOUTUBE_API_KEY")
+    youtube_api_key: str = Field("")
 
     # --- Redis ------------------------------------------------------------
-    redis_url: str = Field("redis://redis:6379", env="REDIS_URL")
+    redis_url: str = Field("redis://redis:6379")
 
     # --- CORS -------------------------------------------------------------
-    allowed_origins: List[AnyHttpUrl] = Field(default=["http://localhost:5173"], env="ALLOWED_ORIGINS")
+    allowed_origins: List[AnyHttpUrl] = Field(default=["http://localhost:5173"])
 
     # --- Misc -------------------------------------------------------------
-    log_level: str = Field("INFO", env="LOG_LEVEL")
+    log_level: str = Field("INFO")
+    cache_ttl_seconds: int = Field(3600, description="Default TTL for cache entries (seconds)")
 
-    class Config:
-        case_sensitive = False
+    # Pydantic-settings configuration
+    model_config = SettingsConfigDict(
+        env_file=".env",        # Load from .env file if present
+        env_file_encoding="utf-8",
+        case_sensitive=False,   # Environment variables are usually uppercase
+        extra='ignore'          # Ignore extra fields from .env
+    )
 
 
 # Keeping a cached copy so repeated imports are cheap
