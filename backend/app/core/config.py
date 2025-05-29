@@ -14,11 +14,7 @@ print(settings.youtube_api_key)
 from functools import lru_cache
 from typing import List, Optional
 
-<<<<<<< HEAD
-from pydantic_settings import BaseSettings
-=======
-from pydantic_settings import BaseSettings, SettingsConfigDict # MODIFIED_LINE
->>>>>>> 1c3e6eff7b580d19fab037a99cfdf7a9e7de9c95
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field, AnyHttpUrl
 
 
