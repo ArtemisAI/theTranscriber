@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build --prefix frontend && pip install -r backend/requirements.txt"
+  publish = "frontend/dist"
+  functions = "backend/app"
+
+[functions]
+  included_files = ["backend/app/**"]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/main/:splat"
+  status = 200

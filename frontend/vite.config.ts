@@ -6,7 +6,11 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      "/api": "http://localhost:8000", // adjusts if backend is hosted differently
+      "/api": {
+        target: "http://localhost:8000", // Or whatever port the backend runs on locally
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "/api"), // Ensure /api prefix is maintained if needed by backend
+      },
     },
   },
 });

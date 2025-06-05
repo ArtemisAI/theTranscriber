@@ -8,6 +8,6 @@ from .routes import search, transcripts, playlists
 def register_routes(app: FastAPI) -> None:  # pragma: no cover (thin wrapper)
     """Attach routers to the main FastAPI instance."""
 
-    app.include_router(search.router, tags=["search"])
-    app.include_router(transcripts.router, tags=["transcripts"])
-    app.include_router(playlists.router, tags=["playlists"])
+    app.include_router(search.router, prefix="/api", tags=["search"])
+    app.include_router(transcripts.router, prefix="/api", tags=["transcripts"])
+    app.include_router(playlists.router, prefix="/api", tags=["playlists"])

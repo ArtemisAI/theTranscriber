@@ -1,6 +1,7 @@
 """FastAPI application factory & entry-point."""
 
 from fastapi import FastAPI
+from mangum import Mangum
 
 from app.api import register_routes
 from app.core.config import settings
@@ -31,3 +32,6 @@ def create_app() -> FastAPI:  # noqa: D401
 
 # Singleton instance used by Uvicorn / tests
 app = create_app()
+
+# This is the handler Netlify will use
+handler = Mangum(app)

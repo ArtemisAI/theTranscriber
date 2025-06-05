@@ -8,3 +8,4 @@ pytest-asyncio==0.23.6
 redis==5.0.1          # Uncomment once caching layer is implemented
 youtube-transcript-api==0.6.2  # For transcript retrieval (Phase 2)
 python-json-logger~=2.0
+mangum
